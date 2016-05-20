@@ -7,7 +7,7 @@
              body {
         font-family:"Lucida Grande","Droid Sans",Arial,Helvetica,sans-serif;
     }
-    .legend {
+/*    .legend {
         position: absolute;
         border: 1px solid #555555;
         border-radius: 5px 5px 5px 5px;
@@ -16,7 +16,7 @@
         padding: 8px;
         top:20;
         left:870;
-    }
+    }*/
     .bld {
         font-weight: bold;
     }
@@ -37,13 +37,12 @@
                 top:25;
             }
             
-            #message  {
+/*            #message  {
                 list-style: none;
-
                 padding: 15;
                 float:left;
                 font-size:14;
-            }
+            }*/
             #volTitle {
                 position: absolute;
                 top: 590;
@@ -68,8 +67,8 @@
             #streamList {
                 height: 650;
                 width: 400;
-                padding-top: -5;
-                padding-bottom: -5;
+                padding-top: 0;
+                padding-bottom: 0;
 
                 //overflow-y: scroll;
                 overflow: auto;
@@ -130,17 +129,17 @@
                 opacity: 1;
                 white-space: pre-line; /* enable '\n' as new line character. */
             }
-            #cloud {
+/*            #cloud {
                 position: absolute;
                 top:50;
                 left:750;
                 height: 400;
                 width:400;
                 font-family: "Arial";
-            }
+            }*/
             #stream {
                 position: absolute;
-                top:80;
+                top:90;
                 left:900;
                 height: 650;
                 width: 300;
@@ -149,7 +148,7 @@
                 
             }
             #streamTitle {
-                position: absolute;;
+                position: absolute;
                 top:60;
                 left: 915;
                 width: 300;
@@ -193,34 +192,92 @@
             }
             
             .message {
-                margin-bottom:-2px;
-                margin-top:-2px;
+                margin-bottom:0px;
+                margin-top:0px;
+                margin-left: 3px;
                 font-weight: 200;
                 font-size: 12;
+                color: black;
             }
-            #time {
-                margin-bottom:-2px;
-                margin-top:-2px;
+            .time {
+                margin-bottom:0px;
+                margin-top:0px;
+                margin-left: 10px;
                 font-weight: 150;
                 font-size: 12;
-                color: blue;
-                
-                
+                color: #C0C1C2;
             }
-            #stmt {
-                margin-bottom:-2px;
-                margin-top:-2px;
-                font-weight: 200;
-                font-size: 12;
-                
+            .stmt {
+                margin-bottom:6px;
+                margin-top:-1px;
+                margin-left: 1px;
+                font-weight: 300;
+                font-size: 14;               
             }
+
+            #legend {
+                position: absolute;
+                left: 5px;
+                top: 550px;
+                /*width: 300px;
+                height: 40px;*/
+                margin-bottom:2;
+                margin-top:2;                
+            }
+            #legend_stockprice {
+                position: absolute;
+                left: 5px;
+                top: 930px;
+                /*width: 250px;
+                height: 40px;*/
+                margin-bottom:2;
+                margin-top:2;
+            }
+            .legend {
+              padding-top: 0px;
+              margin-bottom: 0px;
+              float: right;
+              list-style: none outside;
+              opacity: 0;
+              /*transition: opacity 0.9s linear;*/
+            }
+            .legend li {
+                padding-top: 3px;
+                padding-bottom: 3px;
+                padding-left: 3px;
+                padding-right: 3px;
+                float: left;
+                font-size: 12px;
+                line-height: 15px;
+                text-align: center;
+                min-width: 40px;
+                width: auto;
+                font-family:Arial,Helvetica,sans-serif;
+                font-weight:200;
+            }
+            .legend_bull{
+                border: 1px solid #262626;
+                background-color: #AAEB9D; /*red #FA9B9B*/
+            }
+            .legend_bear{
+                border: 1px solid #262626;
+                background-color: #F78F8F;  /*green #70AAFA*/
+            }
+            .legend_rise {
+              border: 1px solid #262626;
+            }
+            .legend_fall {
+              border: 1px solid #262626;
+              background-color: #70AAFA; 
+            }
+            
             
         </style>
     </head>
     
     
     <body>
-        <h1 align="center">Stock Twits Comments Analysis</h1>
+        <h1 align="center"><a href="https://github.com/NYU-CS6313-SPRING2016/Group-8-StockTweets" target="view_window">StockTwits Comments Analysis</a></h1>
         
         <div id="week">
             Please select a week:
@@ -232,7 +289,12 @@
           <option value="3">Nov 30 - Dec 04</option>
           <option value="4">Nov 23 - 27</option>
           <option value="5">Nov 16 - 20</option>
-          <option value="6">Nov 09 - 13</option>
+          <!-- <option value="6">Nov 09 - 13</option>
+          <option value="7">Nov 02 - 06</option>
+          <option value="8">Oct 26 - 30</option>
+          <option value="9">Oct 19 - 23</option>
+          <option value="10">Oct 12 - 16</option>
+          <option value="11">Oct 05 - 09</option> -->
         </select>
         
         <div id="treeTitle">
@@ -269,6 +331,22 @@
             <li id="streamList">
             
             <li>
+        </div>
+        <div id="legend">
+            <ul class="legend" style="opacity: 1">
+              <li class="legend_text">Color: </li>
+              <li class="legend_bull">bullish</li>
+              <li class="legend_bear">bearish</li>
+              <li class="legend_text">Size: Comment Volume</li>
+            </ul>
+        </div>
+
+        <div id="legend_stockprice">
+            <ul class="legend" style="opacity: 1">
+              <li class="legend_text">Daily Stock Price</li>
+              <li class="legend_rise">rise</li>
+              <li class="legend_fall">fall</li>
+            </ul>
         </div>
         <div id="streamTitle"></div>
         <div id="wordTitle">Weekly Key Words</div>
@@ -336,9 +414,46 @@
              break;
              
              case "6":
-             treeFile = "TreemapDict110913.json" ;
+             treeFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/TreemapDict110913.json" ;
+             lineFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart110913.json";
+             streamFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream110913.json";
+             wordFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudWeek110913.json";
              break;
 
+             case "7":
+             treeFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/TreemapDict110206.json" ;
+             lineFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart110206.json";
+             streamFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream110206.json";
+             wordFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudWeek110206.json";
+             break;
+
+             case "8":
+             treeFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/TreemapDict102630.json" ;
+             lineFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart102630.json";
+             streamFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream102630.json";
+             wordFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudWeek102630.json";
+             break;
+
+             case "9":
+             treeFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/TreemapDict101923.json" ;
+             lineFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart101923.json";
+             streamFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream101923.json";
+             wordFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudWeek101923.json";
+             break;
+
+             case "10":
+             treeFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/TreemapDict101216.json" ;
+             lineFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart101216.json";
+             streamFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream101216.json";
+             wordFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudWeek101216.json";
+             break;
+
+             case "11":
+             treeFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/TreemapDict100509.json" ;
+             lineFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart100509.json";
+             streamFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream100509.json";
+             wordFile = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudWeek100509.json";
+             break;
      }
             
            d3.json(treeFile, function(result) {
@@ -351,11 +466,6 @@
     
         }
 
-        
-
-        
-        
-    
        function changestock(a, name, slt ) {
         document.getElementById("streamTitle").innerHTML = name + "'s Stream";
      var temp;
@@ -370,7 +480,7 @@
              word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData121418.json"
              break;
          case "2":
-             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=11&e=11&f=2015&g=d&a=11&b=15&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=11&e=11&f=2015&g=d&a=11&b=05&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
              line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart120711.json";
              stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream120711.json";
              word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData120711.json"
@@ -394,7 +504,47 @@
              word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData111620.json"
              break;
 
+             case "6":
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=10&e=13&f=2015&g=d&a=10&b=07&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart110913.json";
+             stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream110913.json";
+             word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData110913.json"
+             break;
 
+             case "7":
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=10&e=06&f=2015&g=d&a=10&b=00&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart110206.json";
+             stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream110206.json";
+             word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData110206.json"
+             break;
+
+             case "8":
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=09&e=30&f=2015&g=d&a=09&b=24&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart102630.json";
+             stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream102630.json";
+             word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData102630.json"
+             break;
+
+             case "9":
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=09&e=23&f=2015&g=d&a=09&b=17&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart101923.json";
+             stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream101923.json";
+             word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData101923.json"
+             break;
+
+             case "10":
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=09&e=16&f=2015&g=d&a=09&b=10&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart101216.json";
+             stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream101216.json";
+             word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData101216.json"
+             break;
+
+             case "11":
+             temp = "select Date, Open, High, Low, Close from csv where url='http://real-chart.finance.yahoo.com/table.csv?s=" + name + "&d=09&e=09&f=2015&g=d&a=09&b=03&c=2015&ignore=.csv' and columns='Date,Open,High,Low,Close,Volume,Adj Close'";
+             line = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/linechart100509.json";
+             stream = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/stream100509.json";
+             word = "https://raw.githubusercontent.com/NYU-CS6313-SPRING2016/Group-8-StockTweets/master/data/wordCloudData100509.json"
+             break;
      }
      d3.json(word, function(result) {
                 render_word(result[name], name);
@@ -402,8 +552,8 @@
            
      $(function() {
 
-
-         $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(temp) + "&format=json&callback=?", function( d) {
+        $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(temp) + "&format=json&callback=?", function( d) {
+         //$.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(temp) + "&format=json&callback=?", function( d) {
              if(d.query.results == null) {
                 alert("No price data for this stock.")
              }
@@ -430,7 +580,7 @@
                  },
 
                  title: {
-                     text: name + "'s Weekly Stock Price",
+                     text: name + "'s Stock Price & Trading Volume",
                      style: {
                          fontFamily: "default",
                          fontSize: 18,
@@ -669,13 +819,7 @@ d3.json(line, function(error, data) {
                 
                 
     //             ;
-    // }
-     
-        
-        
-        
-    
-    
+    // }    
         
     function renderList(data) {
             //alert("a");
@@ -686,29 +830,28 @@ d3.json(line, function(error, data) {
             list.selectAll("li")
                 .data(data)
                 .enter()
-                .append("li")
-                .attr("id", "message")
                 
-                .text(function(d) {return  d.body})
+                 .append("li")
+                 .attr("class", "time")
+                 .text(function(d) {return d.crated_at;})
+
                 .append("li")
+                .attr("class", "message")                
+                .text(function(d) {return  d.body;})
                 
-                .text(function(d) {return  d.sentiment;})
-                .attr("id", "stmt")
-                .style('text-shadow', function(d) {
+                .append("li")
+                .text(function(d) {return  d.sentiment + "\n";})
+                .attr("class", "stmt")
+                .style('color', function(d) {
                     
                     if(d.sentiment === 'Bullish') {
-                        return "0 0 10px #FA9B9B";
+                        return "#55B816";   //"0 0 10px #55B816";
                     } else {
-                        return "0 0 10px #70AAFA";
+                        return "#FA9B9B";   //"0 0 10px #F56856";
                     }
-                })
-                
-                .style("font-weight", "600")
-                .style("font-size", "16")
-                // .append("li")
-                // .attr("id", "time")
-                // .text(function(d) {return "Time: " + d.crated_at})
-                ;
+                })                
+                //.style("font-weight", "600")
+                //.style("font-size", "16");                ;
     }
 }
     
